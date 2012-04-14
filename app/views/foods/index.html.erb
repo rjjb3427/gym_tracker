@@ -1,9 +1,9 @@
 <%- model_class = Food.new.class -%>
-<h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+<h1>Alimentos</h1>
+<br />
 <table class="table table-striped">
   <thead>
     <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:name) %></th>
       <th><%= model_class.human_attribute_name(:type_id) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
@@ -12,7 +12,6 @@
   <tbody>
     <% @foods.each do |food| %>
       <tr>
-        <td><%= link_to food.id, food_path(food) %></td>
         <td><%= food.name %></td>
         <td><%= food.type.name %></td>
         <td>
