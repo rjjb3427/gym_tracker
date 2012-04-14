@@ -1,4 +1,8 @@
 Gym::Application.routes.draw do
+  resources :foods
+
+  resources :types
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
