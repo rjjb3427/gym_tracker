@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  diet_id: 1
+  food_id: 1
+  ammount: 1.5
+
+two:
+  diet_id: 1
+  food_id: 1
+  ammount: 1.5

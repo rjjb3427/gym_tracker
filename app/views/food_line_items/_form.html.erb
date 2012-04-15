@@ -1,0 +1,12 @@
+<%= simple_form_for([@diet,@food_line_item]) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.association :food ,:prompt => "Selecciona un alimento" %>
+    <%= f.input :ammount %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, :class => 'btn-primary', id: 'save_line_item', value: 'save'%>
+  </div>
+<% end %>

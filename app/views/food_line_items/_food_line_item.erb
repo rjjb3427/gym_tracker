@@ -1,0 +1,19 @@
+<tr id='line_item_<%= food_line_item.id %>' >
+        <input class='line_item_id' type="hidden" value='<%= food_line_item.id %>' />
+        <input class='food_id' type="hidden" value='<%= food_line_item.food.id %>' />
+        <td class='line_item_name'><%= food_line_item.food.name %></td>
+        <td class='line_item_ammount'><%= food_line_item.ammount %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      diet_food_line_item_path(@diet, food_line_item),
+                      method: 'put',
+                      style: 'enabled: false',
+                      :class => ['btn btn-mini' , 'update_line_item']  %>
+
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      diet_food_line_item_path(@diet, food_line_item),
+                      :method => :delete,
+                      :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
+</tr>

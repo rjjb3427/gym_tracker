@@ -1,4 +1,9 @@
 Gym::Application.routes.draw do
+  
+  resources :diets do 
+    resources :food_line_items  
+  end 
+
   resources :foods
 
   resources :types

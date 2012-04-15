@@ -11,7 +11,22 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120414032752) do
+ActiveRecord::Schema.define(:version => 20120414074333) do
+
+  create_table "diets", :force => true do |t|
+    t.boolean  "active"
+    t.integer  "profile_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "food_line_items", :force => true do |t|
+    t.integer  "food_id"
+    t.integer  "diet_id"
+    t.float    "ammount"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "foods", :force => true do |t|
     t.string   "name"
