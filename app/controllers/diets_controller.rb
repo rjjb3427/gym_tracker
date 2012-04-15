@@ -52,7 +52,7 @@ class DietsController < ApplicationController
 
     respond_to do |format|
       if @diet.save
-        format.html { redirect_to @diet, notice: 'Diet was successfully created.' }
+        format.html { redirect_to [@profile,@diet], notice: 'Diet was successfully created.' }
         format.json { render json: @diet, status: :created, location: @diet }
       else
         format.html { render action: "new" }
@@ -84,7 +84,7 @@ class DietsController < ApplicationController
     @diet.destroy
 
     respond_to do |format|
-      format.html { redirect_to diets_url }
+      format.html { redirect_to profile_diets_url }
       format.json { head :no_content }
     end
   end
