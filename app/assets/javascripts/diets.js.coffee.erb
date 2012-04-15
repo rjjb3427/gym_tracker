@@ -8,6 +8,7 @@ $(document).ready ->
   reset_line_item_form = ->
     $('#food_line_item_food_id').val(0)
     $('#food_line_item_ammount').val("")
+    $('#food_line_item_measure_unit_id').val("")
     $('#new_food_line_item').attr('method', 'post')
     $('#new_food_line_item').attr('action', save_path)
 
@@ -15,12 +16,15 @@ $(document).ready ->
     line_item = $(this).parent().parent()
     food = $('.food_id', $(line_item)).val()
     ammount = $('.line_item_ammount', $(line_item)).text()
+    measure_unit = $('.measure_unit_id', $(line_item)).val()
 
     $('#new_food_line_item').attr('method', 'put')
     $('#new_food_line_item').attr('action', $(this).attr('href'))
 
     $('#food_line_item_food_id').val(food)
     $('#food_line_item_ammount').val(ammount)
+    $('#food_line_item_measure_unit_id').val(measure_unit);
+    
     return false
 
   $("form#new_food_line_item").submit (event) ->
@@ -29,24 +33,26 @@ $(document).ready ->
     method = $(this).attr('method')
     food_id = $('#food_line_item_food_id').val()
     ammount = $('#food_line_item_ammount').val()
+    measure_unit_id = $('#food_line_item_measure_unit_id').val()
 
     if method == 'put'
       $.ajax
         type: method
         url: url
-        data: { food_line_item: { food_id: food_id,ammount: ammount}}
+        data: { food_line_item: { food_id: food_id,ammount: ammount, measure_unit_id: measure_unit_id}}
         dataType: 'json'
         success: (json) ->
             line_item = $('#line_item_'+json.id)
             $('.line_item_ammount', $(line_item)).text(json.ammount)
             $('.line_item_name', $(line_item)).text(json.food.name)
+            $('.line_item_measure_unit', $(line_item)).text(json.measure_unit.name)
             reset_line_item_form()
             return
     else
       $.ajax
         type: method
         url: url
-        data: { food_line_item: { food_id: food_id,ammount: ammount}}
+        data: { food_line_item: { food_id: food_id,ammount: ammount, measure_unit_id: measure_unit_id}}
         dataType: 'html'
         success: (html) ->
           $('#line_items tbody').append(html)

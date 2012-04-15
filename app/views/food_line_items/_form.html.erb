@@ -4,8 +4,9 @@
   <div class="form-inputs">
     <%= f.association :food ,:prompt => "Selecciona un alimento" %>
     <%= f.input :ammount %>
+    <%= f.association :measure_unit ,:prompt => "Selecciona una unidad de medida" %>
   </div>
-
+  
   <div class="form-actions">
     <%= f.button :submit, :class => 'btn-primary', id: 'save_line_item', value: 'save'%>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")), "#", :class => 'btn',id: 'reset_form'%>

@@ -16,6 +16,7 @@ class FoodLineItemsController < ApplicationController
     
     @food_line_item.food = Food.find(params[:food_line_item][:food_id])
     @food_line_item.ammount = params[:food_line_item][:ammount]    
+    @food_line_item.measure_unit = MeasureUnit.find(params[:food_line_item][:measure_unit_id])
 
     if @food_line_item.save
       render @food_line_item, status: :created
@@ -32,9 +33,10 @@ class FoodLineItemsController < ApplicationController
     
     @food_line_item.food = Food.find(params[:food_line_item][:food_id])
     @food_line_item.ammount = params[:food_line_item][:ammount]
+    @food_line_item.measure_unit = MeasureUnit.find(params[:food_line_item][:measure_unit_id])
     
     if @food_line_item.save
-      render json: @food_line_item,include: :food, status: :ok, location: @diet_food_line_item
+      render json: @food_line_item,include: [:food, :measure_unit], status: :ok, location: @diet_food_line_item
     else
       render json: @food_line_item.errors, status: :unprocessable_entity
     end
@@ -48,7 +50,7 @@ class FoodLineItemsController < ApplicationController
     @food_line_item.destroy
 
     respond_to do |format|
-      format.html { redirect_to @food_line_item.diet }
+      format.html { redirect_to  [@profile, @diet] }
       format.json { head :no_content }
     end
   end
