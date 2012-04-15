@@ -20,7 +20,7 @@
         </td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_diet_path(diet), :class => 'btn btn-mini' %>
+                      edit_profile_diet_path(@profile,diet), :class => 'btn btn-mini' %>
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
                       profile_diet_path(@profile,diet),
                       :method => :delete,

@@ -1,12 +1,12 @@
 class FoodLineItemsController < ApplicationController
-  before_filter :get_diet, :get_profile
+  before_filter :get_profile, :get_diet
 
   def get_profile
-    @profile = Profile.find(params[:profile_id])
+    @profile = Profile.includes(:diets).find(params[:profile_id])
   end
   
   def get_diet
-      @diet = Diet.find(params[:diet_id])
+    @diet = @profile.diets.find(params[:diet_id])
   end 
 
   # POST /food_line_items

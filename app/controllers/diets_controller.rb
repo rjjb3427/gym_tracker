@@ -2,13 +2,13 @@ class DietsController < ApplicationController
   before_filter :get_profile
   
   def get_profile
-    @profile = Profile.find(params[:profile_id])
+    @profile = Profile.includes(:diets).find(params[:profile_id])
   end
 
   # GET /diets
   # GET /diets.json
   def index
-    @diets = Diet.all
+    @diets = @profile.diets
 
     respond_to do |format|
       format.html # index.html.erb
@@ -19,7 +19,7 @@ class DietsController < ApplicationController
   # GET /diets/1
   # GET /diets/1.json
   def show
-    @diet = Diet.find(params[:id])
+    @diet = @profile.diets.includes(:food_line_items).find(params[:id])
     @food_line_item = FoodLineItem.new
     @food_line_items = @diet.food_line_items
     
@@ -32,7 +32,7 @@ class DietsController < ApplicationController
   # GET /diets/new
   # GET /diets/new.json
   def new
-    @diet = Diet.new
+    @diet = @profile.diets.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -42,13 +42,13 @@ class DietsController < ApplicationController
 
   # GET /diets/1/edit
   def edit
-    @diet = Diet.find(params[:id])
+    @diet = @profile.diets.find(params[:id])
   end
 
   # POST /diets
   # POST /diets.json
   def create
-    @diet = Diet.new(params[:diet])
+    @diet = @profile.diets.new(params[:diet])
 
     respond_to do |format|
       if @diet.save
@@ -64,7 +64,7 @@ class DietsController < ApplicationController
   # PUT /diets/1
   # PUT /diets/1.json
   def update
-    @diet = Diet.find(params[:id])
+    @diet = @profile.diets.find(params[:id])
 
     respond_to do |format|
       if @diet.update_attributes(params[:diet])
@@ -80,7 +80,7 @@ class DietsController < ApplicationController
   # DELETE /diets/1
   # DELETE /diets/1.json
   def destroy
-    @diet = Diet.find(params[:id])
+    @diet = @profile.diets.find(params[:id])
     @diet.destroy
 
     respond_to do |format|
