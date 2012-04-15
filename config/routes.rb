@@ -1,9 +1,13 @@
 Gym::Application.routes.draw do
   
-  resources :diets do 
-    resources :food_line_items  
-  end 
+  resources :measure_units
 
+  resources :profiles do
+    resources :diets do 
+      resources :food_line_items  
+    end 
+  end
+  
   resources :foods
 
   resources :types

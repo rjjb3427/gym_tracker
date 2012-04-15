@@ -5,6 +5,24 @@
 $(document).ready ->
   save_path = $('#new_food_line_item').attr('action')
 
+  reset_line_item_form = ->
+    $('#food_line_item_food_id').val(0)
+    $('#food_line_item_ammount').val("")
+    $('#new_food_line_item').attr('method', 'post')
+    $('#new_food_line_item').attr('action', save_path)
+
+  edit_click = (event) ->
+    line_item = $(this).parent().parent()
+    food = $('.food_id', $(line_item)).val()
+    ammount = $('.line_item_ammount', $(line_item)).text()
+
+    $('#new_food_line_item').attr('method', 'put')
+    $('#new_food_line_item').attr('action', $(this).attr('href'))
+
+    $('#food_line_item_food_id').val(food)
+    $('#food_line_item_ammount').val(ammount)
+    return false
+
   $("form#new_food_line_item").submit (event) ->
     event.preventDefault()
     url = $(this).attr('action')
@@ -22,11 +40,7 @@ $(document).ready ->
             line_item = $('#line_item_'+json.id)
             $('.line_item_ammount', $(line_item)).text(json.ammount)
             $('.line_item_name', $(line_item)).text(json.food.name)
-
-            $('#food_line_item_food_id').val(0)
-            $('#food_line_item_ammount').val("")
-            $('#new_food_line_item').attr('method', 'post')
-            $('#new_food_line_item').attr('action', save_path)
+            reset_line_item_form()
             return
     else
       $.ajax
@@ -36,20 +50,15 @@ $(document).ready ->
         dataType: 'html'
         success: (html) ->
           $('#line_items tbody').append(html)
-          return
-
+          $('.update_line_item').last().bind('click', edit_click)
+          reset_line_item_form()
+          return  
     return
-
-  $('.update_line_item').click (event) ->
-    line_item = $(this).parent().parent()
-    food = $('.food_id', $(line_item)).val()
-    ammount = $('.line_item_ammount', $(line_item)).text()
-
-    $('#new_food_line_item').attr('method', 'put')
-    $('#new_food_line_item').attr('action', $(this).attr('href'))
-
-    $('#food_line_item_food_id').val(food)
-    $('#food_line_item_ammount').val(ammount)
+  
+  $('.update_line_item').click edit_click
+  
+  $('#reset_form').click (event) ->
+    reset_line_item_form()
     return false
 
   return    

@@ -1,4 +1,10 @@
 class DietsController < ApplicationController
+  before_filter :get_profile
+  
+  def get_profile
+    @profile = Profile.find(params[:profile_id])
+  end
+
   # GET /diets
   # GET /diets.json
   def index

@@ -1,28 +1,21 @@
-<%- model_class = Diet.new.class -%>
+<%- model_class = MeasureUnit.new.class -%>
 <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
 <table class="table table-striped">
   <thead>
     <tr>
-      <th><%= model_class.human_attribute_name(:active) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
-      <th>Alimentos</th>
+      <th><%= model_class.human_attribute_name(:name) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
   <tbody>
-    <% @diets.each do |diet| %>
+    <% @measure_units.each do |measure_unit| %>
       <tr>
-        <td><%= diet.active %></td>
-        <td><%=l diet.created_at %></td>
-        <td>
-           <%= link_to t('.edit', :default => t("Ver")),
-                      profile_diet_path(@profile, diet), :class => 'btn btn-mini' %>
-        </td>
+        <td><%= measure_unit.name %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_diet_path(diet), :class => 'btn btn-mini' %>
+                      edit_measure_unit_path(measure_unit), :class => 'btn btn-mini' %>
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      diet_path(diet),
+                      measure_unit_path(measure_unit),
                       :method => :delete,
                       :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
                       :class => 'btn btn-mini btn-danger' %>
@@ -33,5 +26,5 @@
 </table>
 
 <%= link_to t('.new', :default => t("helpers.links.new")),
-            new_diet_path,
+            new_measure_unit_path,
             :class => 'btn btn-primary' %>

@@ -1,4 +1,4 @@
-<%= simple_form_for([@diet,@food_line_item]) do |f| %>
+<%= simple_form_for([@profile,@diet,@food_line_item]) do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
@@ -8,5 +8,6 @@
 
   <div class="form-actions">
     <%= f.button :submit, :class => 'btn-primary', id: 'save_line_item', value: 'save'%>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")), "#", :class => 'btn',id: 'reset_form'%>
   </div>
 <% end %>
