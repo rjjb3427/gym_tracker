@@ -1,5 +1,12 @@
 class MeasureUnitsController < ApplicationController
+  before_filter :verify
 
+  def verify
+    if !profile_signed_in? 
+        redirect_to new_profile_session_path()
+    end
+  end 
+  
   # GET /measure_units
   # GET /measure_units.json
   def index

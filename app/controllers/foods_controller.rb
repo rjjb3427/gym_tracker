@@ -1,5 +1,14 @@
 class FoodsController < ApplicationController
+  before_filter :verify
   before_filter :load_types, :only => [:new, :edit, :create, :update] 
+
+  def verify
+    if !profile_signed_in? 
+        redirect_to new_profile_session_path()
+    end
+
+  end 
+
 
   def load_types 
         @foodTypes = Type.all.collect { |t| [t.name, t.id] }

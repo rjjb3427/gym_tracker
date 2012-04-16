@@ -3,6 +3,7 @@
 <table class="table table-striped">
   <thead>
     <tr>
+      <th><%= model_class.human_attribute_name(:title) %></th>
       <th><%= model_class.human_attribute_name(:active) %></th>
       <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th>Alimentos</th>
@@ -12,6 +13,7 @@
   <tbody>
     <% @diets.each do |diet| %>
       <tr>
+        <td><%= diet.title %></td>
         <td><%= diet.active %></td>
         <td><%=l diet.created_at %></td>
         <td>

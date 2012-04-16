@@ -1,9 +1,22 @@
 class DietsController < ApplicationController
-  before_filter :get_profile
-  
+  before_filter  :verify, :get_profile
+
   def get_profile
     @profile = Profile.includes(:diets).find(params[:profile_id])
   end
+
+  def verify
+    if profile_signed_in? 
+      if params[:profile_id].to_i != current_profile.id
+        redirect_to profiles_path()
+      else
+        return true
+      end
+    else
+        redirect_to new_profile_session_path()
+    end
+
+  end 
 
   # GET /diets
   # GET /diets.json
@@ -68,7 +81,7 @@ class DietsController < ApplicationController
 
     respond_to do |format|
       if @diet.update_attributes(params[:diet])
-        format.html { redirect_to @diet, notice: 'Diet was successfully updated.' }
+        format.html { redirect_to profile_diets_url, notice: 'Diet was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

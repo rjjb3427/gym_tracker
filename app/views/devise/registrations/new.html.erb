@@ -1,0 +1,29 @@
+<h2>Sign up</h2>
+
+<%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="inputs">
+  <%= f.input :name %>
+  <%= f.input :age %>
+  
+  <div class="control-group">
+    <%= f.label :gender, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.select :gender, [ 'masculino', 'femenino'] %>
+    </div>
+  </div>
+
+  <%= f.input :weight, min: 30, max: 250 %>
+  <%= f.input :height, min: 130, max: 220 %>
+    <%= f.input :email, :required => true, :autofocus => true %>
+    <%= f.input :password, :required => true %>
+    <%= f.input :password_confirmation, :required => true %>
+  </div>
+
+  <div class="actions">
+    <%= f.button :submit, "Sign up" %>
+  </div>
+<% end %>
+
+<%= render "links" %>

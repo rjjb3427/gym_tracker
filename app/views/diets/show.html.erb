@@ -1,5 +1,5 @@
 <%- model_class = @diet.class -%>
-<h1><%=t '.title', :default => model_class.model_name.human %></h1>
+<h1><%= @diet.title %></h1>
 <br />
 
 <%= render 'food_line_items/index' %>

@@ -1,5 +1,7 @@
 Gym::Application.routes.draw do
   
+  devise_for :profiles
+
   resources :measure_units
 
   resources :profiles do
@@ -11,6 +13,8 @@ Gym::Application.routes.draw do
   resources :foods
 
   resources :types
+
+  root to: "profiles#index"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
