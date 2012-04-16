@@ -1,4 +1,9 @@
+<div class="hero-unit">
+
 <h2>Sign up</h2>
+<span class="label label-important">We won't send you spam email.</span>
+<br />
+<br />
 
 <%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
   <%= f.error_notification %>
@@ -27,3 +32,4 @@
 <% end %>
 
 <%= render "links" %>
+</div>
