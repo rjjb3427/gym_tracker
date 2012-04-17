@@ -1,5 +1,5 @@
 class Food < ActiveRecord::Base
-  attr_accessible :name, :type_id
+  attr_accessible :name, :type_id, :calories
 
   validates_presence_of :name
 
