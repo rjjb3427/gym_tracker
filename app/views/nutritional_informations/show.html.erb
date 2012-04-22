@@ -9,7 +9,6 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th><%= model_class.human_attribute_name(:food_id) %></th>
       <th><%= model_class.human_attribute_name(:energy) %></th>
       <th><%= model_class.human_attribute_name(:proteins) %></th>
       <th><%= model_class.human_attribute_name(:fat) %></th>
@@ -20,7 +19,6 @@
   <tbody>
       <% nutritional_information = @nutritional_information %>
       <tr>
-        <td><%= nutritional_information.food_id %></td>
         <td><%= nutritional_information.energy %></td>
         <td><%= nutritional_information.proteins %></td>
         <td><%= nutritional_information.fat %></td>
