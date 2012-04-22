@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120417044342) do
+ActiveRecord::Schema.define(:version => 20120422202008) do
 
   create_table "diets", :force => true do |t|
     t.boolean  "active"
@@ -35,11 +35,20 @@ ActiveRecord::Schema.define(:version => 20120417044342) do
     t.integer  "type_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-    t.float    "calories"
   end
 
   create_table "measure_units", :force => true do |t|
     t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "nutritional_informations", :force => true do |t|
+    t.integer  "food_id"
+    t.float    "energy"
+    t.float    "proteins"
+    t.float    "fat"
+    t.float    "hydrates"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  food_id: 1
+  energy: 1.5
+  proteins: 1.5
+  fat: 1.5
+  hydrates: 1.5
+
+two:
+  food_id: 1
+  energy: 1.5
+  proteins: 1.5
+  fat: 1.5
+  hydrates: 1.5

@@ -9,18 +9,19 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th><%= model_class.human_attribute_name(:name) %></th>
-      <th><%= model_class.human_attribute_name(:calories) %></th>
-      <th><%= model_class.human_attribute_name(:type_id) %></th>
+     
+      <th>Categoria</th>
+       <th><%= model_class.human_attribute_name(:name) %></th>
+
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
   <tbody>
     <% @foods.each do |food| %>
       <tr>
-        <td><%= food.name %></td>
-        <td><%= food.calories %></td>
         <td><%= food.type.name %></td>
+        <td><%= food.name %></td>
+        
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_food_path(food), :class => 'btn btn-mini' %>
