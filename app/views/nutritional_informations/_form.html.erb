@@ -1,0 +1,12 @@
+<%= simple_form_for [@food, @nutritional_information], :html => { :class => 'form-horizontal' } do |f| %>
+  <%= f.input :food_id %>
+  <%= f.input :energy %>
+  <%= f.input :proteins %>
+  <%= f.input :fat %>
+  <%= f.input :hydrates %>
+  <div class="form-actions">
+    <%= f.button :submit, :class => 'btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                food_nutritional_information_path, :class => 'btn' %>
+  </div>
+<% end %>

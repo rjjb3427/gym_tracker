@@ -10,7 +10,9 @@ Gym::Application.routes.draw do
     end 
   end
   
-  resources :foods
+  resources :foods do 
+      resources :nutritional_informations
+  end
 
   resources :types
 

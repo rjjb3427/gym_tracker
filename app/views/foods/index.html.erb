@@ -11,7 +11,8 @@
     <tr>
      
       <th>Categoria</th>
-       <th><%= model_class.human_attribute_name(:name) %></th>
+      <th>Descripción</th>
+      <th>Información nutricional</th>
 
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
@@ -22,6 +23,12 @@
         <td><%= food.type.name %></td>
         <td><%= food.name %></td>
         
+        <td>
+          <%= link_to t('.edit', :default => 'ver'),
+                      food_nutritional_information_path(food,food.nutritionalInformation),
+                      :class => 'btn btn-mini' %>
+        </td>
+
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_food_path(food), :class => 'btn btn-mini' %>

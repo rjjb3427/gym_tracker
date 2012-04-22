@@ -1,0 +1,42 @@
+<%- model_class = NutritionalInformation.new.class -%>
+<h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:food_id) %></th>
+      <th><%= model_class.human_attribute_name(:energy) %></th>
+      <th><%= model_class.human_attribute_name(:proteins) %></th>
+      <th><%= model_class.human_attribute_name(:fat) %></th>
+      <th><%= model_class.human_attribute_name(:hydrates) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @nutritional_informations.each do |nutritional_information| %>
+      <tr>
+        <td><%= link_to nutritional_information.id, nutritional_information_path(nutritional_information) %></td>
+        <td><%= nutritional_information.food_id %></td>
+        <td><%= nutritional_information.energy %></td>
+        <td><%= nutritional_information.proteins %></td>
+        <td><%= nutritional_information.fat %></td>
+        <td><%= nutritional_information.hydrates %></td>
+        <td><%=l nutritional_information.created_at %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_food_nutritional_information_path(@food,nutritional_information), :class => 'btn btn-mini' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      food_nutritional_information_path(@food,nutritional_information),
+                      :method => :delete,
+                      :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_food_nutritional_information_path,
+            :class => 'btn btn-primary' %>
