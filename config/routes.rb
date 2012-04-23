@@ -12,6 +12,7 @@ Gym::Application.routes.draw do
   
   resources :foods do 
       resources :nutritional_informations
+      get :change_type, on: :collection
   end
 
   resources :types

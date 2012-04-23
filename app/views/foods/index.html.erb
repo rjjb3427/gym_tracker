@@ -1,4 +1,3 @@
-<%- model_class = Food.new.class -%>
 <h1>Alimentos</h1>
 
 <div class="alert alert-info">
@@ -6,42 +5,18 @@
   Acá podés crear alimentos, los vas a necesitar para la dieta.
 </div>
 
-<table class="table table-striped">
-  <thead>
-    <tr>
-     
-      <th>Categoria</th>
-      <th>Descripción</th>
-      <th>Información nutricional</th>
+<%= form_tag(change_type_foods_path, :method => 'get', id: 'change_form') do  %>
+<div class="control-group">
+    <label for='type_id'> Categoria </label>
+    <div class="controls">
+      <%= select_tag :type_id, options_for_select(@foodTypes) %>
+    </div>
+</div>
+<% end %>
 
-      <th><%=t '.actions', :default => t("helpers.actions") %></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @foods.each do |food| %>
-      <tr>
-        <td><%= food.type.name %></td>
-        <td><%= food.name %></td>
-        
-        <td>
-          <%= link_to t('.edit', :default => 'ver'),
-                      food_nutritional_information_path(food,food.nutritionalInformation),
-                      :class => 'btn btn-mini' %>
-        </td>
-
-        <td>
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_food_path(food), :class => 'btn btn-mini' %>
-          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      food_path(food),
-                      :method => :delete,
-                      :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
-                      :class => 'btn btn-mini btn-danger' %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div id='food_table'>
+<%= render 'foods', locals: {foods: @foods} %>
+</div>
 
 <%= link_to t('.new', :default => t("helpers.links.new")),
             new_food_path,

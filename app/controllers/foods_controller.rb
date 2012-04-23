@@ -1,24 +1,33 @@
 class FoodsController < ApplicationController
   before_filter :verify
-  before_filter :load_types, :only => [:new, :edit, :create, :update] 
+  before_filter :load_types, :only => [:index, :new, :edit, :create, :update] 
 
   def verify
     if !profile_signed_in? 
         redirect_to new_profile_session_path()
     end
-
   end 
-
 
   def load_types 
         @foodTypes = Type.all.collect { |t| [t.name, t.id] }
   end
 
+  def change_type
+    @foods = Food.includes(:type).where( type_id: params['type']['type_id']).paginate(page: params[:page])
+
+    render partial: 'foods', locals: { foods: @foods }
+  end
 
   # GET /foods
   # GET /foods.json
   def index
-    @foods = Food.includes(:type).all
+    @food_type_id = @foodTypes.first
+    
+    if params['type'].nil?
+      @foods = Food.includes(:type).where( type_id: @food_type_id).paginate(page: params[:page])
+    else
+      @foods = Food.includes(:type).where( type_id: params['type']['type_id']).paginate(page: params[:page])
+    end 
 
     respond_to do |format|
       format.html # index.html.erb
