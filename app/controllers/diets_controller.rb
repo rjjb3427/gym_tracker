@@ -1,5 +1,5 @@
 class DietsController < ApplicationController
-  before_filter  :verify, :get_profile
+  before_filter  :verify, :get_profile, except: [:get_diets]
 
   def get_profile
     @profile = Profile.includes(:diets).find(params[:profile_id])
@@ -28,6 +28,14 @@ class DietsController < ApplicationController
       format.json { render json: @diets }
     end
   end
+
+  def get_diets
+    debugger
+    @profile = Profile.find(doorkeeper_token.resource_owner_id)
+    render json: @profile.diets.all.to_json(include: :food_line_items)
+
+
+  end 
 
   # GET /diets/1
   # GET /diets/1.json

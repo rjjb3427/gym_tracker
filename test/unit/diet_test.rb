@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class DietTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  should validate_presence_of :title
+  should belong_to :profile
+  should have_many :food_line_items
 end

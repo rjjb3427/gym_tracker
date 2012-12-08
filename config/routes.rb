@@ -1,5 +1,7 @@
 Gym::Application.routes.draw do
   
+  mount Doorkeeper::Engine => '/oauth'
+
   devise_for :profiles
 
   resources :measure_units
@@ -9,6 +11,8 @@ Gym::Application.routes.draw do
       resources :food_line_items  
     end 
   end
+
+  match 'get_diets' => "diets#get_diets"
   
   resources :foods do 
       resources :nutritional_informations

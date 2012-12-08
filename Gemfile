@@ -8,6 +8,13 @@ gem 'rails', '3.2.3'
 group :development, :test do
   gem 'sqlite3'
 end
+
+group :test do 
+	gem 'shoulda'
+	gem 'mocha'
+	gem 'capybara'
+end
+
 group :production do
   gem 'pg'
 end
@@ -40,10 +47,11 @@ gem 'jquery-rails'
 # gem 'capistrano'
 
 # To use debugger
-# gem 'ruby-debug19', :require => 'ruby-debug'
+#gem 'ruby-debug19', :require => 'ruby-debug'
 
 gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
 gem 'simple_form'
 gem 'devise'
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
+gem 'doorkeeper'

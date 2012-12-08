@@ -3,6 +3,7 @@
 one:
   diet_id: 1
   food_id: 1
+  measure_unit_id: 1
   ammount: 1.5
 
 two:

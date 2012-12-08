@@ -1,5 +1,9 @@
 <%- model_class = Profile.new.class -%>
-<h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+
+<!-- Como insertar consas en el layout application.html.erb-->
+<% title 'Profiles 1.0' %>
+
+<h1><%= yield(:title) %></h1>
 <table class="table table-striped">
   <thead>
     <tr>
