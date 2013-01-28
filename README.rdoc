@@ -1,3 +1,28 @@
-==Sandbox
+gym-tracker
+----------
+
+An easy way to follow your diet!
+
+
+Demo
+----
+
+Deployed on Heroku:
 
 http://gym-tracker.herokuapp.com/
+
+
+Stack
+------------
+
+Server-Side
+-----------
+
+-Ruby On Rails, 
+-authentication with Device.
+-authorization using CanCan.
+
+Client
+------
+-Coffeescript
+-Bootstrap
