@@ -17,6 +17,7 @@ http://gym-tracker.herokuapp.com/
 * Ruby On Rails
 * authentication with Device
 * authorization using CanCan
+* unit testing with Shoulda
 
 ===Client
 
