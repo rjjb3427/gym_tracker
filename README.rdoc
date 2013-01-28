@@ -1,28 +1,24 @@
-gym-tracker
-----------
+==gym-tracker
 
 An easy way to follow your diet!
 
 
-Demo
-----
+==Demo
 
 Deployed on Heroku:
 
 http://gym-tracker.herokuapp.com/
 
 
-Stack
-------------
+==Stack
 
-Server-Side
------------
+===Server-Side
 
--Ruby On Rails, 
--authentication with Device.
--authorization using CanCan.
+* Ruby On Rails
+* authentication with Device
+* authorization using CanCan
 
-Client
-------
--Coffeescript
--Bootstrap
+===Client
+
+* Coffeescript
+* Bootstrap
