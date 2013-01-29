@@ -2,10 +2,9 @@ class ProfilesController < ApplicationController
   before_filter :verify
 
   def verify
-    if !profile_signed_in? 
+    if !profile_signed_in?
         redirect_to new_profile_session_path()
     end
-
   end 
 
   # GET /profiles

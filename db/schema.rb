@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120528042412) do
+ActiveRecord::Schema.define(:version => 20121210045559) do
 
   create_table "diets", :force => true do |t|
     t.boolean  "active"
@@ -98,10 +98,10 @@ ActiveRecord::Schema.define(:version => 20120528042412) do
     t.string   "gender"
     t.float    "weight"
     t.float    "height"
-    t.datetime "created_at",                             :null => false
-    t.datetime "updated_at",                             :null => false
-    t.string   "email",                  :default => "", :null => false
-    t.string   "encrypted_password",     :default => "", :null => false
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
+    t.string   "email",                  :default => "",    :null => false
+    t.string   "encrypted_password",     :default => "",    :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -110,6 +110,7 @@ ActiveRecord::Schema.define(:version => 20120528042412) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.boolean  "isAdmin",                :default => false
   end
 
   add_index "profiles", ["email"], :name => "index_profiles_on_email", :unique => true
