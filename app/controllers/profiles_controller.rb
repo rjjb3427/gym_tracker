@@ -10,6 +10,7 @@ class ProfilesController < ApplicationController
       end
     else
         redirect_to new_profile_session_path()
+    end
   end 
   # GET /profiles
   # GET /profiles.json
