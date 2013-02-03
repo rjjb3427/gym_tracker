@@ -1,7 +1,4 @@
 Gym::Application.routes.draw do
-  
-  mount Doorkeeper::Engine => '/oauth'
-
   devise_for :profiles
 
   resources :measure_units

@@ -30,11 +30,8 @@ class DietsController < ApplicationController
   end
 
   def get_diets
-    debugger
     @profile = Profile.find(doorkeeper_token.resource_owner_id)
     render json: @profile.diets.all.to_json(include: :food_line_items)
-
-
   end 
 
   # GET /diets/1
