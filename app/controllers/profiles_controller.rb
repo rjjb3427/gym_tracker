@@ -2,10 +2,17 @@ class ProfilesController < ApplicationController
   before_filter :verify
 
   def verify
-    if !profile_signed_in?
+    if profile_signed_in? 
+      if params[:profile_id].to_i != current_profile.id
+        redirect_to profiles_path()
+      else
+        return true
+      end
+    else
+        redirect_to new_profile_session_path()
     end
-  end 
 
+  end 
   # GET /profiles
   # GET /profiles.json
   def index
