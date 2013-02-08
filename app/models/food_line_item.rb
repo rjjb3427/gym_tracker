@@ -1,7 +1,7 @@
 class FoodLineItem < ActiveRecord::Base
-  attr_accessible :ammount, :food_id
-  validates_presence_of :ammount, :measure_unit
-  validates_numericality_of :ammount 
+  attr_accessible :amount, :food_id
+  validates_presence_of :amount, :measure_unit
+  validates_numericality_of :amount
 
   belongs_to :diet
   belongs_to :food

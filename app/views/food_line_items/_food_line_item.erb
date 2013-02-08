@@ -2,7 +2,7 @@
         <input class='measure_unit_id' type="hidden" value='<%= food_line_item.measure_unit.id %>' />
         <input class='food_id' type="hidden" value='<%= food_line_item.food.id %>' />
         <td class='line_item_name'><%= food_line_item.food.name %></td>
-        <td class='line_item_ammount'><%= food_line_item.ammount %></td>
+        <td class='line_item_amount'><%= food_line_item.amount %></td>
         <td class='line_item_measure_unit'><%= food_line_item.measure_unit.name %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),

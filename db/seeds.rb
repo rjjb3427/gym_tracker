@@ -6,6 +6,8 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+
+=begin
 last_type_name = ''
 
 require 'csv'
@@ -18,7 +20,6 @@ CSV.foreach 'listas/pescados.csv' do |row|
   		last_type_name = type.name
   	end
 
-
   	food = Food.create(name: row[1], type_id: @type_id)
   	NutritionalInformation.create(food_id: food.id,  
   									energy: row[2], 
@@ -26,3 +27,4 @@ CSV.foreach 'listas/pescados.csv' do |row|
   									fat: row[4],
   									hydrates: row[5])
 end
+=end

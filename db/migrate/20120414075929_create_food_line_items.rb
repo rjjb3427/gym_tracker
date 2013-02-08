@@ -3,7 +3,7 @@ class CreateFoodLineItems < ActiveRecord::Migration
     create_table :food_line_items do |t|
       t.integer :diet_id
       t.integer :food_id
-      t.float :ammount
+      t.float :amount
 
       t.timestamps
     end

@@ -1,5 +1,6 @@
 class DietsController < ApplicationController
   before_filter  :verify, :get_profile, except: [:get_diets]
+  respond_to :html, :json
 
   def get_profile
     @profile = Profile.includes(:diets).find(params[:profile_id])
@@ -22,15 +23,11 @@ class DietsController < ApplicationController
   # GET /diets.json
   def index
     @diets = @profile.diets
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @diets }
-    end
+    respond_with @diets
   end
 
   def get_diets
-    @profile = Profile.find(doorkeeper_token.resource_owner_id)
+    @profile = Profile.find(params[:id])
     render json: @profile.diets.all.to_json(include: :food_line_items)
   end 
 
@@ -40,22 +37,12 @@ class DietsController < ApplicationController
     @diet = @profile.diets.includes(:food_line_items).find(params[:id])
     @food_line_item = FoodLineItem.new
     @food_line_items = @diet.food_line_items
-    
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @diet }
-    end
+    respond_with @diets
   end
 
   # GET /diets/new
-  # GET /diets/new.json
   def new
     @diet = @profile.diets.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @diet }
-    end
   end
 
   # GET /diets/1/edit
@@ -84,26 +71,17 @@ class DietsController < ApplicationController
   def update
     @diet = @profile.diets.find(params[:id])
 
-    respond_to do |format|
-      if @diet.update_attributes(params[:diet])
-        format.html { redirect_to profile_diets_url, notice: 'Diet was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @diet.errors, status: :unprocessable_entity }
-      end
+    if @diet.update_attributes(params[:diet])
+      redirect_to profile_diets_url, notice: 'Diet was successfully updated.'
+    else
+      render json: @diet.errors, status: :unprocessable_entity
     end
   end
 
   # DELETE /diets/1
-  # DELETE /diets/1.json
   def destroy
     @diet = @profile.diets.find(params[:id])
     @diet.destroy
-
-    respond_to do |format|
-      format.html { redirect_to profile_diets_url }
-      format.json { head :no_content }
-    end
+   redirect_to profile_diets_url
   end
 end

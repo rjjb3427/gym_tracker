@@ -15,7 +15,7 @@ class FoodLineItemsController < ApplicationController
     @food_line_item = @diet.food_line_items.new
     
     @food_line_item.food = Food.find(params[:food_line_item][:food_id])
-    @food_line_item.ammount = params[:food_line_item][:ammount]    
+    @food_line_item.amount = params[:food_line_item][:amount]
     @food_line_item.measure_unit = MeasureUnit.find(params[:food_line_item][:measure_unit_id])
 
     if @food_line_item.save
@@ -32,7 +32,7 @@ class FoodLineItemsController < ApplicationController
     @food_line_item = FoodLineItem.find(params[:id])
     
     @food_line_item.food = Food.find(params[:food_line_item][:food_id])
-    @food_line_item.ammount = params[:food_line_item][:ammount]
+    @food_line_item.amount = params[:food_line_item][:amount]
     @food_line_item.measure_unit = MeasureUnit.find(params[:food_line_item][:measure_unit_id])
     
     if @food_line_item.save
@@ -44,14 +44,9 @@ class FoodLineItemsController < ApplicationController
   end
 
   # DELETE /food_line_items/1
-  # DELETE /food_line_items/1.json
   def destroy
     @food_line_item = FoodLineItem.find(params[:id])
     @food_line_item.destroy
-
-    respond_to do |format|
-      format.html { redirect_to  [@profile, @diet] }
-      format.json { head :no_content }
-    end
+    redirect_to  [@profile, @diet]
   end
 end

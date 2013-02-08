@@ -1,6 +1,7 @@
 class FoodsController < ApplicationController
   before_filter :verify
   before_filter :load_types, :only => [:index, :new, :edit, :create, :update] 
+  respond_to :html, :json
 
   def verify
     if !profile_signed_in? 
@@ -14,7 +15,6 @@ class FoodsController < ApplicationController
 
   def change_type
     @foods = Food.includes(:type).where( type_id: params['type']['type_id']).paginate(page: params[:page])
-
     render partial: 'foods', locals: { foods: @foods }
   end
 
@@ -29,31 +29,21 @@ class FoodsController < ApplicationController
       @foods = Food.includes(:type).where( type_id: params['type']['type_id']).paginate(page: params[:page])
     end 
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @foods }
-    end
+    respond_with(@foods)
   end
 
   # GET /foods/1
   # GET /foods/1.json
   def show
     @food = Food.find(params[:id])
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @food }
-    end
+    respond_with(@food)
   end
 
   # GET /foods/new
   # GET /foods/new.json
   def new
     @food = Food.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @food }
-    end
+    respond_with(@food)
   end
 
   # GET /foods/1/edit
@@ -94,14 +84,9 @@ class FoodsController < ApplicationController
   end
 
   # DELETE /foods/1
-  # DELETE /foods/1.json
   def destroy
     @food = Food.find(params[:id])
     @food.destroy
-
-    respond_to do |format|
-      format.html { redirect_to foods_url }
-      format.json { head :no_content }
-    end
+    redirect_to foods_url
   end
 end

@@ -1,13 +1,9 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
-
 $(document).ready ->
   save_path = $('#new_food_line_item').attr('action')
 
   reset_line_item_form = ->
     $('#food_line_item_food_id').val(0)
-    $('#food_line_item_ammount').val("")
+    $('#food_line_item_amount').val("")
     $('#food_line_item_measure_unit_id').val("")
     $('#new_food_line_item').attr('method', 'post')
     $('#new_food_line_item').attr('action', save_path)
@@ -15,14 +11,14 @@ $(document).ready ->
   edit_click = (event) ->
     line_item = $(this).parent().parent()
     food = $('.food_id', $(line_item)).val()
-    ammount = $('.line_item_ammount', $(line_item)).text()
+    amount = $('.line_item_amount', $(line_item)).text()
     measure_unit = $('.measure_unit_id', $(line_item)).val()
 
     $('#new_food_line_item').attr('method', 'put')
     $('#new_food_line_item').attr('action', $(this).attr('href'))
 
     $('#food_line_item_food_id').val(food)
-    $('#food_line_item_ammount').val(ammount)
+    $('#food_line_item_amount').val(amount)
     $('#food_line_item_measure_unit_id').val(measure_unit);
     
     return false
@@ -32,18 +28,18 @@ $(document).ready ->
     url = $(this).attr('action')
     method = $(this).attr('method')
     food_id = $('#food_line_item_food_id').val()
-    ammount = $('#food_line_item_ammount').val()
+    amount = $('#food_line_item_amount').val()
     measure_unit_id = $('#food_line_item_measure_unit_id').val()
 
     if method == 'put'
       $.ajax
         type: method
         url: url
-        data: { food_line_item: { food_id: food_id,ammount: ammount, measure_unit_id: measure_unit_id}}
+        data: { food_line_item: { food_id: food_id,amount: amount, measure_unit_id: measure_unit_id}}
         dataType: 'json'
         success: (json) ->
             line_item = $('#line_item_'+json.id)
-            $('.line_item_ammount', $(line_item)).text(json.ammount)
+            $('.line_item_amount', $(line_item)).text(json.amount)
             $('.line_item_name', $(line_item)).text(json.food.name)
             $('.line_item_measure_unit', $(line_item)).text(json.measure_unit.name)
             reset_line_item_form()
@@ -52,7 +48,7 @@ $(document).ready ->
       $.ajax
         type: method
         url: url
-        data: { food_line_item: { food_id: food_id,ammount: ammount, measure_unit_id: measure_unit_id}}
+        data: { food_line_item: { food_id: food_id,amount: amount, measure_unit_id: measure_unit_id}}
         dataType: 'html'
         success: (html) ->
           $('#line_items tbody').append(html)
