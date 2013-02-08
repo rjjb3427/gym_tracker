@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120422223228) do
+ActiveRecord::Schema.define(:version => 20130208081427) do
 
   create_table "diets", :force => true do |t|
     t.boolean  "active"
@@ -20,6 +20,8 @@ ActiveRecord::Schema.define(:version => 20120422223228) do
     t.datetime "updated_at", :null => false
     t.string   "title"
   end
+
+  add_index "diets", ["profile_id"], :name => "index_diets_on_profile_id"
 
   create_table "food_line_items", :force => true do |t|
     t.integer  "diet_id"
@@ -30,12 +32,17 @@ ActiveRecord::Schema.define(:version => 20120422223228) do
     t.integer  "measure_unit_id"
   end
 
+  add_index "food_line_items", ["diet_id"], :name => "index_food_line_items_on_diet_id"
+  add_index "food_line_items", ["food_id"], :name => "index_food_line_items_on_food_id"
+
   create_table "foods", :force => true do |t|
     t.string   "name"
     t.integer  "type_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  add_index "foods", ["type_id"], :name => "index_foods_on_type_id"
 
   create_table "measure_units", :force => true do |t|
     t.string   "name"
@@ -52,6 +59,8 @@ ActiveRecord::Schema.define(:version => 20120422223228) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  add_index "nutritional_informations", ["food_id"], :name => "index_nutritional_informations_on_food_id"
 
   create_table "profiles", :force => true do |t|
     t.string   "name"

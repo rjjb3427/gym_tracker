@@ -48,7 +48,7 @@ gem 'jquery-rails'
 
 # To use debugger
 #gem 'ruby-debug19', :require => 'ruby-debug'
-
+gem 'newrelic_rpm'
 gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
 gem 'simple_form'
 gem 'devise'
