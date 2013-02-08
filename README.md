@@ -6,7 +6,7 @@ An easy way to follow your diet!
 Demo
 -----------
 
-Deployed on Heroku:
+Deployed on Heroku (Con cada push al remote de heroku se re-deploya):
 
 http://gym-tracker.herokuapp.com/
 
@@ -25,6 +25,15 @@ Client
 
 * Coffeescript
 * Bootstrap
+
+
+Gems interesantes para mejorar la performance
+--------------------------------------------
+
+Bullet: A rails gem to kill N+1 queries and unused eager loading
+
+Newrelic_rpm: New Relic is a performance management system. It provides you with deep
+information about the performance of your Rails or Ruby application as it runs in production
 
 Screenshots
 -----------
