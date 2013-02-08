@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121210045559) do
+ActiveRecord::Schema.define(:version => 20120422223228) do
 
   create_table "diets", :force => true do |t|
     t.boolean  "active"
@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(:version => 20121210045559) do
   create_table "food_line_items", :force => true do |t|
     t.integer  "diet_id"
     t.integer  "food_id"
-    t.float    "ammount"
+    t.float    "amount"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
     t.integer  "measure_unit_id"
@@ -53,55 +53,16 @@ ActiveRecord::Schema.define(:version => 20121210045559) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "oauth_access_grants", :force => true do |t|
-    t.integer  "resource_owner_id", :null => false
-    t.integer  "application_id",    :null => false
-    t.string   "token",             :null => false
-    t.integer  "expires_in",        :null => false
-    t.string   "redirect_uri",      :null => false
-    t.datetime "created_at",        :null => false
-    t.datetime "revoked_at"
-    t.string   "scopes"
-  end
-
-  add_index "oauth_access_grants", ["token"], :name => "index_oauth_access_grants_on_token", :unique => true
-
-  create_table "oauth_access_tokens", :force => true do |t|
-    t.integer  "resource_owner_id"
-    t.integer  "application_id",    :null => false
-    t.string   "token",             :null => false
-    t.string   "refresh_token"
-    t.integer  "expires_in"
-    t.datetime "revoked_at"
-    t.datetime "created_at",        :null => false
-    t.string   "scopes"
-  end
-
-  add_index "oauth_access_tokens", ["refresh_token"], :name => "index_oauth_access_tokens_on_refresh_token", :unique => true
-  add_index "oauth_access_tokens", ["resource_owner_id"], :name => "index_oauth_access_tokens_on_resource_owner_id"
-  add_index "oauth_access_tokens", ["token"], :name => "index_oauth_access_tokens_on_token", :unique => true
-
-  create_table "oauth_applications", :force => true do |t|
-    t.string   "name",         :null => false
-    t.string   "uid",          :null => false
-    t.string   "secret",       :null => false
-    t.string   "redirect_uri", :null => false
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
-  end
-
-  add_index "oauth_applications", ["uid"], :name => "index_oauth_applications_on_uid", :unique => true
-
   create_table "profiles", :force => true do |t|
     t.string   "name"
     t.integer  "age"
     t.string   "gender"
     t.float    "weight"
     t.float    "height"
-    t.datetime "created_at",                                :null => false
-    t.datetime "updated_at",                                :null => false
-    t.string   "email",                  :default => "",    :null => false
-    t.string   "encrypted_password",     :default => "",    :null => false
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
+    t.string   "email",                  :default => "", :null => false
+    t.string   "encrypted_password",     :default => "", :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -110,7 +71,6 @@ ActiveRecord::Schema.define(:version => 20121210045559) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.boolean  "isAdmin",                :default => false
   end
 
   add_index "profiles", ["email"], :name => "index_profiles_on_email", :unique => true

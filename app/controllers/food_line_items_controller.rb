@@ -13,7 +13,6 @@ class FoodLineItemsController < ApplicationController
   # POST /food_line_items.json
   def create
     @food_line_item = @diet.food_line_items.new
-    
     @food_line_item.food = Food.find(params[:food_line_item][:food_id])
     @food_line_item.amount = params[:food_line_item][:amount]
     @food_line_item.measure_unit = MeasureUnit.find(params[:food_line_item][:measure_unit_id])
@@ -30,7 +29,6 @@ class FoodLineItemsController < ApplicationController
   # PUT /food_line_items/1.json
   def update
     @food_line_item = FoodLineItem.find(params[:id])
-    
     @food_line_item.food = Food.find(params[:food_line_item][:food_id])
     @food_line_item.amount = params[:food_line_item][:amount]
     @food_line_item.measure_unit = MeasureUnit.find(params[:food_line_item][:measure_unit_id])

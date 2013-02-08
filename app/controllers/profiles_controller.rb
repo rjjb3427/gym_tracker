@@ -1,49 +1,25 @@
 class ProfilesController < ApplicationController
-  #before_filter :verify
+  before_filter :verify
+  respond_to :html, :json
 
-  #def verify
-   # if profile_signed_in?
-      #if params[:profile_id].to_i != current_profile.id
-       # redirect_to profiles_path()
-      #else
-      #  return true
-     # end
-    #else
-    #    redirect_to new_profile_session_path()
-   # end
-  #end
+  def verify
+    unless profile_signed_in?
+      redirect_to new_profile_session_path()
+    end
+  end
 
   # GET /profiles
   # GET /profiles.json
   def index
-    @profiles = Profile.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @profiles }
-    end
-  end
-
-  # GET /profiles/1
-  # GET /profiles/1.json
-  def show
-    @profile = Profile.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @profile }
-    end
+    @profiles = [current_profile]
+    respond_with @profiles
   end
 
   # GET /profiles/new
   # GET /profiles/new.json
   def new
     @profile = Profile.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @profile }
-    end
+    respond_with @profiles
   end
 
   # GET /profiles/1/edit
@@ -74,7 +50,7 @@ class ProfilesController < ApplicationController
 
     respond_to do |format|
       if @profile.update_attributes(params[:profile])
-        format.html { redirect_to @profile, notice: 'Profile was successfully updated.' }
+        format.html { redirect_to profiles_path, notice: 'Profile was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -88,10 +64,6 @@ class ProfilesController < ApplicationController
   def destroy
     @profile = Profile.find(params[:id])
     @profile.destroy
-
-    respond_to do |format|
-      format.html { redirect_to profiles_url }
-      format.json { head :no_content }
-    end
+    redirect_to profiles_url
   end
 end

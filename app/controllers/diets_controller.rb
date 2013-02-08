@@ -1,9 +1,14 @@
 class DietsController < ApplicationController
-  before_filter  :verify, :get_profile, except: [:get_diets]
+  before_filter  :verify, :get_profile, only: [:get_diets, :index]
+  before_filter  :verify, :get_simple_profile, except: [:get_diets, :index]
   respond_to :html, :json
 
   def get_profile
     @profile = Profile.includes(:diets).find(params[:profile_id])
+  end
+
+  def get_simple_profile
+    @profile = Profile.find(params[:profile_id])
   end
 
   def verify

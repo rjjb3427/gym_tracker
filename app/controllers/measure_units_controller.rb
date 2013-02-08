@@ -1,5 +1,6 @@
 class MeasureUnitsController < ApplicationController
   before_filter :verify
+  respond_to :html, :json
 
   def verify
     if !profile_signed_in? 
@@ -11,33 +12,21 @@ class MeasureUnitsController < ApplicationController
   # GET /measure_units.json
   def index
     @measure_units = MeasureUnit.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @measure_units }
-    end
+    respond_with @measure_unit
   end
 
   # GET /measure_units/1
   # GET /measure_units/1.json
   def show
     @measure_unit = MeasureUnit.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @measure_unit }
-    end
+    respond_with @measure_unit
   end
 
   # GET /measure_units/new
   # GET /measure_units/new.json
   def new
     @measure_unit = MeasureUnit.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @measure_unit }
-    end
+    respond_with @measure_unit
   end
 
   # GET /measure_units/1/edit
@@ -82,10 +71,6 @@ class MeasureUnitsController < ApplicationController
   def destroy
     @measure_unit = MeasureUnit.find(params[:id])
     @measure_unit.destroy
-
-    respond_to do |format|
-      format.html { redirect_to measure_units_url }
-      format.json { head :no_content }
-    end
+    respond_with measure_units_url
   end
 end

@@ -29,9 +29,11 @@
             <span class="icon-bar"></span>
           </a>
           <a class="brand" href="#">Gym</a>
+
+          <% if profile_signed_in? %>
           <div class="container nav-collapse">
             <ul class="nav">
-              <li><%= link_to "Perfiles", profiles_path()%></li>
+              <li><%= link_to "Perfil", profiles_path()%></li>
               <li><%= link_to "Alimentos", foods_path()%></li>
               <li><%= link_to "Categorias", types_path()  %></li>
               <li><%= link_to "Unidades", measure_units_path()  %></li>
@@ -41,6 +43,7 @@
   <input type="text" class="search-query" placeholder="Search">
 </form>
           </div><!--/.nav-collapse -->
+          <% end %>
         </div>
       </div>
             <div id="user_nav" style='float:right; margin-right:100px'>

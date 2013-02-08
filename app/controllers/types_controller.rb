@@ -1,5 +1,6 @@
 class TypesController < ApplicationController
   before_filter :verify
+  respond_to :html, :json
 
   def verify
     if !profile_signed_in? 
@@ -11,33 +12,21 @@ class TypesController < ApplicationController
   # GET /types.json
   def index
     @types = Type.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @types }
-    end
+    respond_with @types
   end
 
   # GET /types/1
   # GET /types/1.json
   def show
     @type = Type.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @type }
-    end
+    respond_with @types
   end
 
   # GET /types/new
   # GET /types/new.json
   def new
     @type = Type.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @type }
-    end
+    respond_with @types
   end
 
   # GET /types/1/edit
@@ -82,10 +71,6 @@ class TypesController < ApplicationController
   def destroy
     @type = Type.find(params[:id])
     @type.destroy
-
-    respond_to do |format|
-      format.html { redirect_to types_url }
-      format.json { head :no_content }
-    end
+    redirect_to types_url
   end
 end

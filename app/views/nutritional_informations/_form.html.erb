@@ -6,6 +6,6 @@
   <div class="form-actions">
     <%= f.button :submit, :class => 'btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                food_nutritional_information_path, :class => 'btn' %>
+                food_path(@food), :class => 'btn' %>
   </div>
 <% end %>

@@ -4,13 +4,13 @@ class FoodsController < ApplicationController
   respond_to :html, :json
 
   def verify
-    if !profile_signed_in? 
-        redirect_to new_profile_session_path()
+    unless profile_signed_in?
+      redirect_to new_profile_session_path()
     end
   end 
 
   def load_types 
-        @foodTypes = Type.all.collect { |t| [t.name, t.id] }
+    @foodTypes = Type.all.collect { |t| [t.name, t.id] }
   end
 
   def change_type
@@ -22,14 +22,14 @@ class FoodsController < ApplicationController
   # GET /foods.json
   def index
     @food_type_id = @foodTypes.first
-    
-    if params['type'].nil?
-      @foods = Food.includes(:type).where( type_id: @food_type_id).paginate(page: params[:page])
-    else
-      @foods = Food.includes(:type).where( type_id: params['type']['type_id']).paginate(page: params[:page])
-    end 
 
-    respond_with(@foods)
+    if params['type']
+      @foods = Food.includes(:type).includes(:nutritional_information).where( type_id: params['type']['type_id']).paginate(page: params[:page])
+    else
+      @foods = Food.includes(:type).includes(:nutritional_information).where( type_id: @food_type_id).paginate(page: params[:page])
+    end
+
+    respond_with @foods
   end
 
   # GET /foods/1
@@ -42,7 +42,7 @@ class FoodsController < ApplicationController
   # GET /foods/new
   # GET /foods/new.json
   def new
-    @food = Food.new
+    @food = Food.new(:nutritional_information => NutritionalInformation.new)
     respond_with(@food)
   end
 
@@ -54,17 +54,8 @@ class FoodsController < ApplicationController
   # POST /foods
   # POST /foods.json
   def create
-    @food = Food.new(params[:food])
-
-    respond_to do |format|
-      if @food.save
-        format.html { redirect_to foods_path(), notice: 'Food was successfully created.' }
-        format.json { render json: @food, status: :created, location: @food }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @food.errors, status: :unprocessable_entity }
-      end
-    end
+    @food = Food.create(params[:food])
+    redirect_to foods_url
   end
 
   # PUT /foods/1

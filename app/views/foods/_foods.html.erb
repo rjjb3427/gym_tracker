@@ -18,9 +18,18 @@
           <td><%= food.name %></td>
           
           <td>
+
+
+            <% if food.nutritional_information %>
             <%= link_to t('.edit', :default => 'ver'),
-                        food_nutritional_information_path(food,food.nutritionalInformation),
+                        food_nutritional_information_path(food,food.nutritional_information),
                         :class => 'btn btn-mini' %>
+            <% else %>
+            <%= link_to t('.edit', :default => 'cargar'),
+                            new_food_nutritional_information_path(food),
+                            :class => 'btn btn-mini' %>
+
+            <% end %>
           </td>
 
           <td>
