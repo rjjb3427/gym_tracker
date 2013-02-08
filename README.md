@@ -30,10 +30,11 @@ Client
 Gems interesantes para mejorar la performance
 --------------------------------------------
 
-Bullet: A rails gem to kill N+1 queries and unused eager loading
+Bullet: Avisa si encuentra alguna query N+1 o si estamos haciendo eager loading al dope. 
 
-Newrelic_rpm: New Relic is a performance management system. It provides you with deep
-information about the performance of your Rails or Ruby application as it runs in production
+Newrelic_rpm: Con newrelic podemos ver que consultas estan tardando mas y así tener una idea si hace falta algun indice. 
+Tambíen nos da los tiempos de render (discriminado por accion y controller)
+
 
 Screenshots
 -----------
