@@ -30,11 +30,12 @@ Client
 Gems interesantes para mejorar la performance
 --------------------------------------------
 
-Bullet: Avisa si encuentra alguna query N+1 o si estamos haciendo eager loading al dope. 
+* Bullet: Avisa si encuentra alguna query N+1 o si estamos haciendo eager loading al dope. 
 
-Newrelic_rpm: Con newrelic podemos ver que consultas estan tardando mas y así tener una idea si hace falta algun indice. 
+* Newrelic_rpm: Con newrelic podemos ver que consultas estan tardando mas y así tener una idea si hace falta algun indice. 
 Tambíen nos da los tiempos de render (discriminado por accion y controller)
 
+ ![GymTracker](https://raw.github.com/ascoppa/gym_tracker/master/screenshots/newrelik.png)
 
 Screenshots
 -----------
